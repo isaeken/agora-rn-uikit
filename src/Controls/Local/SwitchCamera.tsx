@@ -4,6 +4,7 @@ import {LocalContext} from '../../Contexts/LocalUserContext';
 import RtcContext from '../../Contexts/RtcContext';
 import BtnTemplate from '../BtnTemplate';
 import styles from '../../Style';
+import {Text} from "react-native";
 
 interface SwitchCameraProps {
     render?: ((action: () => void) => ReactNode) | undefined;
@@ -15,6 +16,10 @@ const SwitchCamera: React.FC<SwitchCameraProps> = (props) => {
   const {switchCamera} = localBtnStyles || {};
   const {RtcEngine} = useContext(RtcContext);
   const local = useContext(LocalContext);
+
+  return (
+      <Text>asd</Text>
+  );
 
     if (props?.render !== undefined) {
         return (

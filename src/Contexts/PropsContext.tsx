@@ -402,6 +402,12 @@ export interface AgoraUIKitProps {
    * Callbacks for the signalling layer
    */
   rtmCallbacks?: rtmCallbacks;
+  showButton?: boolean | undefined;
+  controls?: {
+    renderLocalAudioMute?: ((value: boolean, action: () => void) => ReactNode) | undefined;
+    renderLocalVideoMute?: ((value: boolean, action: () => void) => ReactNode) | undefined;
+    renderSwitchCamera?: ((action: () => void) => ReactNode) | undefined;
+  };
 }
 
 export type rtcCallbacks = Partial<CallbacksInterface>;

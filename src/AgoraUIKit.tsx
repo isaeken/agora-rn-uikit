@@ -87,6 +87,8 @@ const AgoraUIKit: React.FC<AgoraUIKitProps> = (props) => {
       callbacks={props.rtcCallbacks}
       rtmCallbacks={props.rtmCallbacks}
       styleProps={props.styleProps}
+      showButton={props.showButton ?? undefined}
+      controls={props.controls ?? undefined}
     />
   );
 };

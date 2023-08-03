@@ -22,6 +22,10 @@ const Controls: React.FC<ControlsPropsInterface> = (props) => {
   const {localBtnContainer} = styleProps || {};
   const showButton = props.showButton !== undefined ? props.showButton : true;
   return (
+      <></>
+  );
+
+  return (
     <>
       <View style={{...styles.Controls, ...(localBtnContainer as object)}}>
         {rtcProps.role !== ClientRoleType.ClientRoleAudience && (
