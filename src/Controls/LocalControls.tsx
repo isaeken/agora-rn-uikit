@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {ReactNode, useContext} from 'react';
 import {View} from 'react-native';
 import styles from '../Style';
 import EndCall from './Local/EndCall';
@@ -12,6 +12,9 @@ import {ClientRoleType} from 'react-native-agora';
 
 interface ControlsPropsInterface {
   showButton?: boolean;
+  renderLocalAudioMute?: ((value: boolean, action: () => void) => ReactNode) | undefined;
+  renderLocalVideoMute?: ((value: boolean, action: () => void) => ReactNode) | undefined;
+  renderSwitchCamera?: ((action: () => void) => ReactNode) | undefined;
 }
 
 const Controls: React.FC<ControlsPropsInterface> = (props) => {
@@ -23,9 +26,9 @@ const Controls: React.FC<ControlsPropsInterface> = (props) => {
       <View style={{...styles.Controls, ...(localBtnContainer as object)}}>
         {rtcProps.role !== ClientRoleType.ClientRoleAudience && (
           <>
-            <LocalAudioMute />
-            <LocalVideoMute />
-            <SwitchCamera />
+            <LocalAudioMute render={props.renderLocalAudioMute} />
+            <LocalVideoMute render={props.renderLocalVideoMute} />
+            <SwitchCamera render={props.renderSwitchCamera} />
           </>
         )}
         <EndCall />

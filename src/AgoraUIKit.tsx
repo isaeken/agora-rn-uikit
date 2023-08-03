@@ -31,12 +31,22 @@ const AgoraUIKitv3: React.FC<PropsInterface> = (props) => {
             {props.rtcProps.disableRtm ? (
               <>
                 {layout === Layout.Grid ? <GridVideo /> : <PinnedVideo />}
-                <LocalControls />
+                <LocalControls
+                    showButton={props?.showButton ?? undefined}
+                    renderLocalAudioMute={props?.controls?.renderLocalAudioMute ?? undefined}
+                    renderLocalVideoMute={props?.controls?.renderLocalVideoMute ?? undefined}
+                    renderSwitchCamera={props?.controls?.renderSwitchCamera ?? undefined}
+                />
               </>
             ) : (
               <RtmConfigure>
                 {layout === Layout.Grid ? <GridVideo /> : <PinnedVideo />}
-                <LocalControls />
+                <LocalControls
+                    showButton={props?.showButton ?? undefined}
+                    renderLocalAudioMute={props?.controls?.renderLocalAudioMute ?? undefined}
+                    renderLocalVideoMute={props?.controls?.renderLocalVideoMute ?? undefined}
+                    renderSwitchCamera={props?.controls?.renderSwitchCamera ?? undefined}
+                />
                 <PopUp />
               </RtmConfigure>
             )}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {StyleProp, TextStyle, ViewStyle} from 'react-native';
 import {IRtcEngineEventHandler, RenderModeType} from 'react-native-agora';
 import {
@@ -411,6 +411,12 @@ export interface PropsInterface {
   styleProps?: Partial<StylePropInterface>;
   callbacks?: Partial<CallbacksInterface>;
   rtmCallbacks?: rtmCallbacks;
+  showButton?: boolean | undefined;
+  controls?: {
+    renderLocalAudioMute?: ((value: boolean, action: () => void) => ReactNode) | undefined;
+    renderLocalVideoMute?: ((value: boolean, action: () => void) => ReactNode) | undefined;
+    renderSwitchCamera?: ((action: () => void) => ReactNode) | undefined;
+  };
 }
 
 const initialValue: PropsInterface = {

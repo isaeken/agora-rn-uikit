@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {ReactNode, useContext} from 'react';
 import PropsContext, {
   ToggleState,
   UidInterface,
@@ -12,6 +12,7 @@ import {IRtcEngine} from 'react-native-agora';
 interface LocalAudioMuteProps {
   btnText?: string;
   variant?: 'outlined' | 'text';
+  render?: ((value: boolean, action: () => void) => ReactNode) | undefined;
 }
 
 const LocalAudioMute: React.FC<LocalAudioMuteProps> = (props) => {
@@ -22,6 +23,17 @@ const LocalAudioMute: React.FC<LocalAudioMuteProps> = (props) => {
   const {muteRemoteAudio} = remoteBtnStyles || {};
   const {RtcEngine, dispatch} = useContext(RtcContext);
   const localUser = useContext(LocalContext);
+
+  if (props.render !== undefined) {
+    return (
+        <>
+          {props.render(
+              localUser.audio === ToggleState.enabled,
+              () => muteAudio(localUser, dispatch, RtcEngine),
+          )}
+        </>
+    );
+  }
 
   return (
     <BtnTemplate

@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {ReactNode, useContext} from 'react';
 import PropsContext, {
   ToggleState,
   UidInterface,
@@ -9,10 +9,12 @@ import styles from '../../Style';
 import {LocalContext} from '../../Contexts/LocalUserContext';
 import {DispatchType} from '../../Contexts/RtcContext';
 import {IRtcEngine} from 'react-native-agora';
+import {muteAudio} from "./LocalAudioMute";
 
 interface LocalVideoMuteProps {
   btnText?: string;
   variant?: 'outlined' | 'text';
+  render?: ((value: boolean, action: () => void) => ReactNode) | undefined;
 }
 
 const LocalVideoMute: React.FC<LocalVideoMuteProps> = (props) => {
@@ -23,6 +25,17 @@ const LocalVideoMute: React.FC<LocalVideoMuteProps> = (props) => {
   const {muteRemoteVideo} = remoteBtnStyles || {};
   const {RtcEngine, dispatch} = useContext(RtcContext);
   const local = useContext(LocalContext);
+
+  if (props.render !== undefined) {
+    return (
+        <>
+          {props.render(
+              local.video === ToggleState.enabled,
+              () => muteVideo(local, dispatch, RtcEngine),
+          )}
+        </>
+    );
+  }
 
   return (
     <BtnTemplate
