@@ -21,9 +21,6 @@ const Controls: React.FC<ControlsPropsInterface> = (props) => {
   const {styleProps, rtcProps} = useContext(PropsContext);
   const {localBtnContainer} = styleProps || {};
   const showButton = props.showButton !== undefined ? props.showButton : true;
-  return (
-      <></>
-  );
 
   return (
     <>
