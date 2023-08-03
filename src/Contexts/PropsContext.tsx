@@ -407,6 +407,7 @@ export interface AgoraUIKitProps {
     renderLocalAudioMute?: ((value: boolean, action: () => void) => ReactNode) | undefined;
     renderLocalVideoMute?: ((value: boolean, action: () => void) => ReactNode) | undefined;
     renderSwitchCamera?: ((action: () => void) => ReactNode) | undefined;
+    renderEndCall?: ((action: () => void) => ReactNode) | undefined;
   };
 }
 
@@ -422,6 +423,7 @@ export interface PropsInterface {
     renderLocalAudioMute?: ((value: boolean, action: () => void) => ReactNode) | undefined;
     renderLocalVideoMute?: ((value: boolean, action: () => void) => ReactNode) | undefined;
     renderSwitchCamera?: ((action: () => void) => ReactNode) | undefined;
+    renderEndCall?: ((action: () => void) => ReactNode) | undefined;
   };
 }
 

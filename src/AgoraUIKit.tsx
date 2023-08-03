@@ -36,6 +36,7 @@ const AgoraUIKitv3: React.FC<PropsInterface> = (props) => {
                     renderLocalAudioMute={props?.controls?.renderLocalAudioMute ?? undefined}
                     renderLocalVideoMute={props?.controls?.renderLocalVideoMute ?? undefined}
                     renderSwitchCamera={props?.controls?.renderSwitchCamera ?? undefined}
+                    renderEndCall={props?.controls?.renderEndCall ?? undefined}
                 />
               </>
             ) : (
@@ -46,6 +47,7 @@ const AgoraUIKitv3: React.FC<PropsInterface> = (props) => {
                     renderLocalAudioMute={props?.controls?.renderLocalAudioMute ?? undefined}
                     renderLocalVideoMute={props?.controls?.renderLocalVideoMute ?? undefined}
                     renderSwitchCamera={props?.controls?.renderSwitchCamera ?? undefined}
+                    renderEndCall={props?.controls?.renderEndCall ?? undefined}
                 />
                 <PopUp />
               </RtmConfigure>

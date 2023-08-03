@@ -17,10 +17,6 @@ const SwitchCamera: React.FC<SwitchCameraProps> = (props) => {
   const {RtcEngine} = useContext(RtcContext);
   const local = useContext(LocalContext);
 
-  return (
-      <Text>asd</Text>
-  );
-
     if (props?.render !== undefined) {
         return (
             <>

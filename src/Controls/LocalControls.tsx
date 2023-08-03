@@ -15,6 +15,7 @@ interface ControlsPropsInterface {
   renderLocalAudioMute?: ((value: boolean, action: () => void) => ReactNode) | undefined;
   renderLocalVideoMute?: ((value: boolean, action: () => void) => ReactNode) | undefined;
   renderSwitchCamera?: ((action: () => void) => ReactNode) | undefined;
+  renderEndCall?: ((action: () => void) => ReactNode) | undefined;
 }
 
 const Controls: React.FC<ControlsPropsInterface> = (props) => {
@@ -32,7 +33,7 @@ const Controls: React.FC<ControlsPropsInterface> = (props) => {
             <SwitchCamera render={props.renderSwitchCamera} />
           </>
         )}
-        <EndCall />
+        <EndCall render={props.renderEndCall ?? undefined} />
       </View>
       {showButton ? (
         <MaxUidConsumer>
