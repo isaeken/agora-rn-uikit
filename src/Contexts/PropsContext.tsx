@@ -259,10 +259,10 @@ export interface RtcSettings {
   //  * Enable the mic before joining the call. (default: true)
   //  */
   // enableAudio?: boolean;
-  // /**
-  //  * Enable the camera before joining the call. Only use for initiak(default: true)
-  //  */
-  // enableVideo?: boolean;
+  /**
+   * Enable the camera before joining the call. Only use for initiak(default: true)
+   */
+  enableVideo?: boolean;
 }
 
 /**
@@ -409,6 +409,7 @@ export interface AgoraUIKitProps {
     renderSwitchCamera?: ((action: () => void) => ReactNode) | undefined;
     renderEndCall?: ((action: () => void) => ReactNode) | undefined;
   };
+  enableVideo?: boolean;
 }
 
 export type rtcCallbacks = Partial<CallbacksInterface>;
@@ -425,6 +426,7 @@ export interface PropsInterface {
     renderSwitchCamera?: ((action: () => void) => ReactNode) | undefined;
     renderEndCall?: ((action: () => void) => ReactNode) | undefined;
   };
+  enableVideo?: boolean;
 }
 
 const initialValue: PropsInterface = {

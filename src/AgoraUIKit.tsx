@@ -2,7 +2,7 @@
  * @module AgoraUIKit
  */
 import React from 'react';
-import {View} from 'react-native';
+import {Text, View} from 'react-native';
 import RtcConfigure from './RtcConfigure';
 import {
   PropsProvider,
@@ -26,7 +26,10 @@ const AgoraUIKitv3: React.FC<PropsInterface> = (props) => {
   return (
     <PropsProvider value={props}>
       <View style={[containerStyle, props.styleProps?.UIKitContainer]}>
-        <RtcConfigure key={props.rtcProps.channel}>
+        <RtcConfigure
+            key={props.rtcProps.channel}
+            enableVideo={props.enableVideo ?? true}
+        >
           <LocalUserContext>
             {props.rtcProps.disableRtm ? (
               <>
@@ -41,7 +44,12 @@ const AgoraUIKitv3: React.FC<PropsInterface> = (props) => {
               </>
             ) : (
               <RtmConfigure>
-                {layout === Layout.Grid ? <GridVideo /> : <PinnedVideo />}
+                {props.enableVideo && (
+                    <>
+                      {layout === Layout.Grid ? <GridVideo /> : <PinnedVideo />}
+                    </>
+                )}
+
                 <LocalControls
                     showButton={props?.showButton ?? undefined}
                     renderLocalAudioMute={props?.controls?.renderLocalAudioMute ?? undefined}
@@ -91,6 +99,7 @@ const AgoraUIKit: React.FC<AgoraUIKitProps> = (props) => {
       styleProps={props.styleProps}
       showButton={props.showButton ?? undefined}
       controls={props.controls ?? undefined}
+      enableVideo={props.enableVideo ?? true}
     />
   );
 };

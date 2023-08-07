@@ -228,7 +228,8 @@ const RtcConfigure: React.FC<PropsWithChildren<Partial<RtcPropsInterface>>> = (
           engineRef={engineRef}
           uidState={uidState}
           joinState={joinState}
-          dispatch={dispatch}>
+          dispatch={dispatch}
+          enableVideo={props.enableVideo}>
           <RtcProvider
             value={{
               RtcEngine: engineRef.current,

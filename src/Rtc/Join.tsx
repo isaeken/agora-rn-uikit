@@ -11,8 +11,9 @@ const Join: React.FC<
     uidState: UidStateInterface;
     dispatch: DispatchType;
     joinState: React.MutableRefObject<boolean>;
+    enableVideo?: boolean;
   }>
-> = ({children, precall, engineRef, uidState, dispatch, joinState}) => {
+> = ({children, precall, engineRef, uidState, dispatch, joinState, enableVideo}) => {
   // let joinState = useRef(false);
   const {rtcProps} = useContext(PropsContext);
 
@@ -41,16 +42,18 @@ const Join: React.FC<
           encryptionKdfSalt: rtcProps.encryption.salt,
         });
       }
-      if (videoState === ToggleState.enabled && Platform.OS === 'ios') {
-        dispatch({
-          type: 'LocalMuteVideo',
-          value: [ToggleState.disabling],
-        });
-        await engine.muteLocalVideoStream(true);
-        dispatch({
-          type: 'LocalMuteVideo',
-          value: [ToggleState.disabled],
-        });
+      if (enableVideo) {
+        if (videoState === ToggleState.enabled && Platform.OS === 'ios') {
+          dispatch({
+            type: 'LocalMuteVideo',
+            value: [ToggleState.disabling],
+          });
+          await engine.muteLocalVideoStream(true);
+          dispatch({
+            type: 'LocalMuteVideo',
+            value: [ToggleState.disabled],
+          });
+        }
       }
       const UID = rtcProps.uid || 0;
       if (rtcProps.tokenUrl) {
@@ -73,16 +76,18 @@ const Join: React.FC<
           {},
         );
       }
-      if (videoState === ToggleState.enabled && Platform.OS === 'ios') {
-        dispatch({
-          type: 'LocalMuteVideo',
-          value: [ToggleState.enabling],
-        });
-        await engine.muteLocalVideoStream(false);
-        dispatch({
-          type: 'LocalMuteVideo',
-          value: [ToggleState.enabled],
-        });
+      if (enableVideo) {
+        if (videoState === ToggleState.enabled && Platform.OS === 'ios') {
+          dispatch({
+            type: 'LocalMuteVideo',
+            value: [ToggleState.enabling],
+          });
+          await engine.muteLocalVideoStream(false);
+          dispatch({
+            type: 'LocalMuteVideo',
+            value: [ToggleState.enabled],
+          });
+        }
       }
     }
     async function init() {
